@@ -1,0 +1,29 @@
+﻿<Window x:Class="PrinCa.AddFilament"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrinCa"
+        mc:Ignorable="d"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Title="AddFilament" Height="305" Width="265" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="tbx_colorName" Margin="78,41,66,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="btn_SaveFilament" Content="Save" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="42" Click="btn_SaveFilament_Click"/>
+        <Label Content="Weight total (g):" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <Label Content="Weight used (g):" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
+        <mah:NumericUpDown x:Name="numUpDn_WeightTotal" Margin="132,134,10,0" VerticalAlignment="Top" Value="1000" TrackMouseWheelWhenMouseOver="True" Minimum="0"/>
+        <mah:NumericUpDown x:Name="numUpDn_WeightUsed" Margin="132,166,10,0" VerticalAlignment="Top" Value="0" Interval="0.1" TrackMouseWheelWhenMouseOver="True" Minimum="0"/>
+        <CheckBox x:Name="chbx_trackFilamentWeight" Content="Track weight loss for this Filament" HorizontalAlignment="Right" Margin="0,202,10,0" VerticalAlignment="Top" FlowDirection="RightToLeft" mah:ToggleButtonHelper.ContentDirection="LeftToRight" Width="229" IsChecked="True"/>
+        <Label Content="Company:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbx_company" Margin="78,10,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Color:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Material:" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cost:" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
+        <mah:NumericUpDown x:Name="numUpDn_cost" Margin="132,73,10,0" VerticalAlignment="Top" Value="24.99" Interval="0.01" Minimum="0"/>
+        <ComboBox x:Name="cmbx_Material" Margin="132,104,10,0" VerticalAlignment="Top"/>
+        <mah:ColorPicker x:Name="myColorPicker" Margin="0,41,10,0" Height="26" VerticalAlignment="Top" IsAdvancedTabVisible="False" SelectedColorChanged="myColorPicker_SelectedColorChanged" Value="000000" HorizontalAlignment="Right" Width="51"/>
+
+    </Grid>
+</Window>
