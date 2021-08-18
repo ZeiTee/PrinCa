@@ -8,9 +8,6 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="PrinCa" Height="450" Width="800">
-    <Window.Resources>
-        <local:HexHex x:Key="HexHex"></local:HexHex>
-    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="PrintJobs">
@@ -80,7 +77,13 @@
                                 <DataGrid x:Name="datagrid_filament" CanUserResizeRows="False" SelectionMode="Single" CanUserResizeColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Company" Binding="{Binding Company}" Width="50*"/>
-                                        <DataGridTextColumn Header="Color" Binding="{Binding ColorName}"  Width="50*" Foreground="{Binding ColorHEX, Converter={StaticResource HexHex}}"/>
+                                        <DataGridTextColumn Header="Color" Binding="{Binding ColorName}"  Width="50*">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}">
+                                                    <Setter Property="Foreground" Value="{Binding ColorHEX, Converter={local:HexHex}}"/>
+                                                </Style>
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
                                         <DataGridTextColumn Header="Material" Binding="{Binding MaterialName}" Width="50*"/>
                                         <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="50*"/>
                                     </DataGrid.Columns>

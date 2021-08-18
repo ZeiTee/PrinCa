@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace PrinCa
 {
-    public class HexHex : IValueConverter
+    public class HexHex : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -23,5 +23,8 @@ namespace PrinCa
         {
             throw new NotImplementedException();
         }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+            => this;
     }
 }
