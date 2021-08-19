@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("printer")]
-    class Printer
+    public class Printer
     {
         [PrimaryKey, AutoIncrement, Unique]
         [Column("id")]

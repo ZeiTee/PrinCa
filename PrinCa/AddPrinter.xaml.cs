@@ -36,7 +36,7 @@ namespace PrinCa
                 {
                     int printerID = 1;
                     //save to DB
-                    SQLiteConnection data = new SQLiteConnection(Globals.dbFullPath);
+                    SQLiteConnection data = new SQLiteConnection(Globals.DbPath);
                     var printer = new Printer() { Name_EN = tbx_PrinterName.Text };
                     data.Insert(printer);
 

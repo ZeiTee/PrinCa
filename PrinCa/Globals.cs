@@ -8,9 +8,8 @@ namespace PrinCa
 {
     public static class Globals
     {
-        public static string dbFullPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Arimatas Software\PrinCa\DB\BaseDatabase.sqlite";
-        public static string dbDirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Arimatas Software\PrinCa\DB";
-        public static string currencySymbol = "?";
-
+        public static string DbPath { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Arimatas Software\PrinCa\DB\BaseDatabase.sqlite";
+        public static Settings Settings { get; set; }
+        public static string CurrencySymbol { get => Settings.currencySymbol; set => Settings.currencySymbol = value; }
     }
 }

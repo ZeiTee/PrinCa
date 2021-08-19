@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("v_FilaInfo")]
-    class v_FilaInfo
+    public class v_FilaInfo
     {
         public int id_Filament { get; set; }
         public string FilamentName { get; set; }

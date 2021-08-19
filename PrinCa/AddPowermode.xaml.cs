@@ -24,7 +24,7 @@ namespace PrinCa
             li_material.Clear();
 
             SQLiteConnection db;
-            db = new SQLiteConnection(Globals.dbFullPath);
+            db = new SQLiteConnection(Globals.DbPath);
             li_material = db.Table<Material>().ToList();
             db.Close();
 

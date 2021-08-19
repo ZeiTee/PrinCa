@@ -12,7 +12,7 @@ namespace PrinCa
         public AddLocation()
         {
             InitializeComponent();
-            lbl_currencyKWH.Content = $"Electricity Costs ({Globals.currencySymbol}/kWh):";
+            lbl_currencyKWH.Content = $"Electricity Costs ({Globals.CurrencySymbol}/kWh):";
         }
 
         private void btn_SavePrinter_Click(object sender, RoutedEventArgs e)
@@ -22,7 +22,7 @@ namespace PrinCa
                 try
                 {
                     //save to DB
-                    SQLiteConnection data = new SQLiteConnection(Globals.dbFullPath);
+                    SQLiteConnection data = new SQLiteConnection(Globals.DbPath);
                     var location = new Locations() { Name_EN = tbx_LocationName.Text, Electricity_Costs = (decimal)numUpDn_Ecosts.Value };
                     data.Insert(location);
                     data.Close();

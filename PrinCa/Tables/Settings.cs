@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("settings")]
-    class Settings
+    public class Settings
     {
         [PrimaryKey, AutoIncrement, Unique]
         [Column("id")]

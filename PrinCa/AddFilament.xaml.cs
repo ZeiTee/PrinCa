@@ -13,6 +13,8 @@ namespace PrinCa
     /// </summary>
     public partial class AddFilament : Window
     {
+        public Filament Filament { get; private set; } = null;
+
         List<Material> li_material = new List<Material>();
         List<string> li_materialForFiltering = new List<string>();
         string hexColor = "";
@@ -29,7 +31,7 @@ namespace PrinCa
             li_material.Clear();
 
             SQLiteConnection db;
-            db = new SQLiteConnection(Globals.dbFullPath);
+            db = new SQLiteConnection(Globals.DbPath);
             li_material = db.Table<Material>().ToList();
             db.Close();
 
@@ -70,23 +72,11 @@ namespace PrinCa
             {
                 try
                 {
-                    int filaID = 1;
                     //save to DB
-                    SQLiteConnection data = new SQLiteConnection(Globals.dbFullPath);
-                    var fila = new Filament() { ColorHEX = hexColor, ColorName = tbx_colorName.Text, Company = tbx_company.Text, Cost = (decimal)numUpDn_cost.Value, Track_Weight_Loss = chbx_trackFilamentWeight.IsEnabled, Weight_Total = (decimal)numUpDn_WeightTotal.Value, Weight_Total_Used = (decimal)numUpDn_WeightUsed.Value, MaterialName = cmbx_Material.Text};
-                    data.Insert(fila);
-
-                    string sql = $"Select * From Filament Where Company = '{tbx_company.Text}' AND ColorHEX = '{hexColor}' AND ColorName = '{tbx_colorName.Text}'";
-                    List<Filament> li_fila = new List<Filament>();
-                    li_fila = data.Query<Filament>(sql).ToList();
-
-                    foreach (Filament x in li_fila)
-                    {
-                        filaID = x.Id;
-                    }
-
-                    data.Close();
-                    this.Close();
+                    SQLiteConnection data = new SQLiteConnection(Globals.DbPath);
+                    Filament = new Filament() { ColorHEX = hexColor, ColorName = tbx_colorName.Text, Company = tbx_company.Text, Cost = (decimal)numUpDn_cost.Value, Track_Weight_Loss = chbx_trackFilamentWeight.IsEnabled, Weight_Total = (decimal)numUpDn_WeightTotal.Value, Weight_Total_Used = (decimal)numUpDn_WeightUsed.Value, MaterialName = cmbx_Material.Text};
+                    data.Insert(Filament);
+                    this.DialogResult = true;
                 }
                 catch (Exception ex)
                 {

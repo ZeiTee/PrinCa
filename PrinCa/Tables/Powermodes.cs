@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("powermodes")]
-    class Powermodes
+    public class Powermodes
     {
         public int Printer_Id { get; set; }
         public string MaterialName { get; set; }

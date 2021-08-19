@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:PrinCa.ViewModels"
         xmlns:local="clr-namespace:PrinCa"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindow, IsDesignTimeCreatable=False}"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="PrinCa" Height="450" Width="800">
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"        
+        Title="PrinCa" Height="450" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
         <TabControl>
             <TabItem Header="PrintJobs">
@@ -74,7 +77,13 @@
                                     </Button.Style>
                                     <iconPacks:PackIconMaterial Kind="Plus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Height="Auto" Foreground="#FFFFFF"/>
                                 </Button>
-                                <DataGrid x:Name="datagrid_filament" CanUserResizeRows="False" SelectionMode="Single" CanUserResizeColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
+                                <DataGrid x:Name="datagrid_filament"
+                                          CanUserResizeRows="False"
+                                          SelectionMode="Single"
+                                          CanUserResizeColumns="False"
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          ItemsSource="{Binding Filaments}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Company" Binding="{Binding Company}" Width="50*"/>
                                         <DataGridTextColumn Header="Color" Binding="{Binding ColorName}"  Width="50*">
@@ -93,8 +102,19 @@
                         <GroupBox Header="General" Height="81" VerticalAlignment="Bottom">
                             <Grid>
                                 <Label Content="Currency:" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-                                <TextBox x:Name="tbx_SettingsCurr" HorizontalAlignment="Left" Margin="75,0,0,10" Text="?" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="42" IsEnabled="False"/>
-                                <Button x:Name="btn_settingsChangeSave" Content="Change" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="69" Click="btn_settingsChangeSave_Click"/>
+                                <TextBox x:Name="tbx_SettingsCurr" HorizontalAlignment="Left" Margin="75,0,0,10" Text="{Binding CurrencySymbol, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="42" IsEnabled="{Binding CanChangeCurrencySymbol}"/>
+                                <Button x:Name="btn_settingsChangeSave" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="69" Click="btn_settingsChangeSave_Click">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Content" Value="Change"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CanChangeCurrencySymbol}" Value="True">
+                                                    <Setter Property="Content" Value="Save"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </GroupBox>
                     </Grid>

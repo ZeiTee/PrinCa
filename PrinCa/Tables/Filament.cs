@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("filament")]
-    class Filament
+    public class Filament
     {
         [PrimaryKey, AutoIncrement, Unique]
         [Column("id")]

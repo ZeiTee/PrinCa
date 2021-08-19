@@ -3,7 +3,7 @@
 namespace PrinCa
 {
     [Table("locations")]
-    class Locations
+    public class Locations
     {
         [PrimaryKey, AutoIncrement, Unique]
         [Column("id")]
